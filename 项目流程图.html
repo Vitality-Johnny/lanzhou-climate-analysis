@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兰州及周边城市气候变化特征对比分析 - 项目流程图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020617;font-family:'JetBrains Mono',monospace;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.container{max-width:1100px;width:100%}
+.header{text-align:center;margin-bottom:40px}
+.header h1{font-size:24px;font-weight:600;color:#f1f5f9;margin-bottom:8px}
+.header .sub{font-size:12px;color:#64748b}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;animation:pulse 2s infinite}
+.dot.cyan{background:#22d3ee;box-shadow:0 0 8px rgba(34,211,238,0.5)}
+.dot.green{background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.5)}
+.dot.violet{background:#a78bfa;box-shadow:0 0 8px rgba(167,139,250,0.5)}
+.dot.amber{background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,0.5)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.card{background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:30px;margin-bottom:30px}
+.card h2{font-size:14px;color:#94a3b8;margin-bottom:20px;display:flex;align-items:center}
+svg{width:100%;height:auto}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+  <h1>🌤 兰州及周边城市气候变化特征对比分析</h1>
+  <div class="sub">项目流程图 · 2015-2025 三城气候数据 Pipeline</div>
+</div>
+
+<div class="card">
+<h2><span class="dot cyan"></span> 数据流程 Pipeline</h2>
+<svg viewBox="0 0 1040 780" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1040" height="780" fill="url(#grid)"/>
+
+  <!-- ========== PHASE 1: 数据源 ========== -->
+  <text x="520" y="42" fill="#22d3ee" font-size="9" font-weight="600" text-anchor="middle">PHASE 1 · 数据采集</text>
+
+  <!-- GHCN -->
+  <rect x="40" y="60" width="220" height="80" rx="8" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="150" y="95" fill="#22d3ee" font-size="12" text-anchor="middle" font-weight="500">🌐 GHCN-Daily</text>
+  <text x="150" y="113" fill="#64748b" font-size="9" text-anchor="middle">NOAA 全球历史气候数据</text>
+  <text x="150" y="128" fill="#64748b" font-size="9" text-anchor="middle">西安/西宁 气温+降水</text>
+
+  <!-- lishi.tianqi -->
+  <rect x="410" y="60" width="220" height="80" rx="8" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="520" y="95" fill="#34d399" font-size="12" text-anchor="middle" font-weight="500">🌤 lishi.tianqi.com</text>
+  <text x="520" y="113" fill="#64748b" font-size="9" text-anchor="middle">国内天气历史网站</text>
+  <text x="520" y="128" fill="#64748b" font-size="9" text-anchor="middle">兰州 月均温（爬虫）</text>
+
+  <!-- Open-Meteo -->
+  <rect x="780" y="60" width="220" height="80" rx="8" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="890" y="95" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="500">☀️ Open-Meteo</text>
+  <text x="890" y="113" fill="#64748b" font-size="9" text-anchor="middle">免费历史天气 API</text>
+  <text x="890" y="128" fill="#64748b" font-size="9" text-anchor="middle">三城 月降水量</text>
+
+  <!-- arrows -->
+  <path d="M150,140 L150,185" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M520,140 L520,185" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M890,140 L890,185" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ========== PHASE 2: 数据提取 ========== -->
+  <text x="520" y="215" fill="#a78bfa" font-size="9" font-weight="600" text-anchor="middle">PHASE 2 · 数据提取 & 清洗</text>
+
+  <!-- Python scripts -->
+  <rect x="270" y="230" width="500" height="70" rx="8" fill="rgba(76,29,149,0.25)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="520" y="262" fill="#a78bfa" font-size="12" text-anchor="middle" font-weight="500">🐍 Python 数据提取 & 清洗</text>
+  <text x="520" y="282" fill="#64748b" font-size="9" text-anchor="middle">.dly 解析 · API 请求 · CSV 输出 · 格式统一</text>
+
+  <!-- arrow -->
+  <path d="M520,300 L520,345" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ========== PHASE 3: 数据集 ========== -->
+  <text x="520" y="375" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">PHASE 3 · 数据集</text>
+
+  <!-- Big data box -->
+  <rect x="120" y="388" width="800" height="130" rx="8" fill="rgba(120,53,15,0.1)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="520" y="416" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="500">📦 6 个数据集 · 2015-2025 (132个月)</text>
+
+  <!-- Mini cards -->
+  <rect x="145" y="435" width="160" height="60" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="225" y="458" fill="#22d3ee" font-size="10" text-anchor="middle">兰州</text>
+  <text x="225" y="475" fill="#64748b" font-size="8" text-anchor="middle">均温+降水 ✓✓</text>
+  <text x="225" y="486" fill="#64748b" font-size="8" text-anchor="middle">lishi·tianqi / OM</text>
+
+  <rect x="335" y="435" width="160" height="60" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="415" y="458" fill="#22d3ee" font-size="10" text-anchor="middle">西安</text>
+  <text x="415" y="475" fill="#64748b" font-size="8" text-anchor="middle">均温+降水 ✓✓</text>
+  <text x="415" y="486" fill="#64748b" font-size="8" text-anchor="middle">GHCN / OM</text>
+
+  <rect x="525" y="435" width="160" height="60" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="0.8"/>
+  <text x="605" y="458" fill="#22d3ee" font-size="10" text-anchor="middle">西宁</text>
+  <text x="605" y="475" fill="#64748b" font-size="8" text-anchor="middle">均温+降水 ✓✓</text>
+  <text x="605" y="486" fill="#64748b" font-size="8" text-anchor="middle">GHCN / OM</text>
+
+  <rect x="715" y="435" width="180" height="60" rx="6" fill="rgba(136,19,55,0.15)" stroke="#fb7185" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <text x="805" y="458" fill="#fb7185" font-size="10" text-anchor="middle">源统一</text>
+  <text x="805" y="475" fill="#64748b" font-size="8" text-anchor="middle">降水统一用 OM 源</text>
+  <text x="805" y="486" fill="#64748b" font-size="8" text-anchor="middle">保证数据一致性</text>
+
+  <!-- arrow -->
+  <path d="M520,518 L520,555" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ========== PHASE 4: 合并 & 分析 ========== -->
+  <text x="520" y="585" fill="#34d399" font-size="9" font-weight="600" text-anchor="middle">PHASE 4 · 数据合并 & 分析</text>
+
+  <!-- Merge -->
+  <rect x="130" y="600" width="350" height="85" rx="8" fill="rgba(6,78,59,0.2)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="305" y="630" fill="#34d399" font-size="12" text-anchor="middle" font-weight="500">🧩 数据合并</text>
+  <text x="305" y="650" fill="#64748b" font-size="9" text-anchor="middle">pandas concat · 统一格式</text>
+  <text x="305" y="665" fill="#64748b" font-size="9" text-anchor="middle">缺失值处理 · 三城一张大表</text>
+
+  <!-- Analysis -->
+  <rect x="560" y="600" width="350" height="85" rx="8" fill="rgba(76,29,149,0.2)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="735" y="630" fill="#a78bfa" font-size="12" text-anchor="middle" font-weight="500">📊 分析维度</text>
+  <text x="735" y="650" fill="#64748b" font-size="9" text-anchor="middle">① 温度/降水趋势分析</text>
+  <text x="735" y="665" fill="#64748b" font-size="9" text-anchor="middle">② 季节特征 · ③ 城市间对比</text>
+
+  <path d="M480,642 L555,642" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- arrow -->
+  <path d="M735,685 L735,715" stroke="#475569" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ========== PHASE 5: 输出 ========== -->
+  <text x="520" y="742" fill="#fb7185" font-size="9" font-weight="600" text-anchor="middle">PHASE 5 · 成果输出</text>
+
+  <rect x="240" y="755" width="560" height="55" rx="8" fill="rgba(136,19,55,0.2)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="520" y="780" fill="#fb7185" font-size="12" text-anchor="middle" font-weight="500">📈 可视化图表 · 分析结论 · 项目报告</text>
+  <text x="520" y="798" fill="#64748b" font-size="9" text-anchor="middle">matplotlib · 折线图 · 箱线图 · 热力图</text>
+</svg>
+</div>
+
+<!-- Summary Cards -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:30px">
+  <div class="card" style="padding:16px">
+    <div style="display:flex;align-items:center;margin-bottom:12px">
+      <span class="dot cyan"></span>
+      <span style="font-size:13px;color:#f1f5f9;font-weight:600">数据源</span>
+    </div>
+    <ul style="list-style:none;font-size:10px;color:#94a3b8;line-height:2">
+      <li>• GHCN-Daily (NOAA)</li>
+      <li>• lishi.tianqi.com</li>
+      <li>• Open-Meteo Archive API</li>
+    </ul>
+  </div>
+  <div class="card" style="padding:16px">
+    <div style="display:flex;align-items:center;margin-bottom:12px">
+      <span class="dot green"></span>
+      <span style="font-size:13px;color:#f1f5f9;font-weight:600">对比城市</span>
+    </div>
+    <ul style="list-style:none;font-size:10px;color:#94a3b8;line-height:2">
+      <li>🏙️ 兰州 (36.05°N, 103.88°E)</li>
+      <li>🏙️ 西安 (34.30°N, 108.93°E)</li>
+      <li>🏙️ 西宁 (36.62°N, 101.77°E)</li>
+    </ul>
+  </div>
+  <div class="card" style="padding:16px">
+    <div style="display:flex;align-items:center;margin-bottom:12px">
+      <span class="dot violet"></span>
+      <span style="font-size:13px;color:#f1f5f9;font-weight:600">分析要素</span>
+    </div>
+    <ul style="list-style:none;font-size:10px;color:#94a3b8;line-height:2">
+      <li>🌡️ 月均温（℃）</li>
+      <li>🌧️ 月降水量（mm）</li>
+      <li>📅 2015-2025 (11年)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card" style="padding:16px;text-align:center">
+  <span style="font-size:10px;color:#475569">数据完整度: 6/6 文件 · 132/132 个月 · 兰州·西安·西宁 均温+降水 全部齐全 ✅</span>
+</div>
+</div>
+</body>
+</html>
