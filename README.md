@@ -1,6 +1,6 @@
 # 🌍 兰州及周边城市气候变化特征对比分析（2015–2025）
 
-> **作者：** 陶彦霖 | **院系：** 兰州大学 · 大气科学学院 · 大一  
+> **作者：** Vitality-Johnny | **院系：** 兰州大学 · 大气科学学院 · 大一  
 > **数据源：** GHCN-Daily + lishi.tianqi.com + Open-Meteo (ERA5)  
 > **方法：** 线性回归 · Mann-Kendall 趋势检验 · matplotlib 可视化
 
