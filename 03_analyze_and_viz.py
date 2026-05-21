@@ -4,8 +4,12 @@ v3: +置信区间 + Theil-Sen + 小波显著性(红噪声/COI/全局谱)
 统一 Open-Meteo ERA5 | 1960-2025
 """
 
-import pandas as pd, numpy as np, matplotlib; matplotlib.use("Agg")
-import matplotlib.pyplot as plt; from scipy import stats; import warnings
+import pandas as pd
+import numpy as np
+import matplotlib; matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from scipy import stats
+import warnings
 warnings.filterwarnings("ignore")
 
 plt.rcParams.update({"font.family":"SimHei","axes.unicode_minus":False,
@@ -22,26 +26,8 @@ annual = pd.read_csv("annual_summary.csv")
 # ═══════════════════════════════
 # 改进的回归函数
 # ═══════════════════════════════
-def theil_sen(x, y):
-    """Theil-Sen 斜率估计 (稳健,不受自相关偏差影响)"""
-    n = len(x); slopes = []
-    for i in range(n):
-        for j in range(i+1, n):
-            if x[j] != x[i]:
-                slopes.append((y[j]-y[i])/(x[j]-x[i]))
-    return np.median(slopes)
-
-def bootstrap_ci(x, y, n_boot=2000, alpha=0.05):
-    """Bootstrap 95% 置信区间 for Theil-Sen slope"""
-    n = len(x); slopes = np.zeros(n_boot)
-    rng = np.random.default_rng(42)
-    for b in range(n_boot):
-        idx = rng.choice(n, size=n, replace=True)
-        slopes[b] = theil_sen(x[idx], y[idx])
-    return np.percentile(slopes, [100*alpha/2, 100*(1-alpha/2)])
-
 def analyze_trend(x, y, label=""):
-    """完整趋势分析：OLS + Theil-Sen + Bootstrap CI"""
+    """完整趋势分析：OLS + Theil-Sen (scipy.stats.theilslopes, O(n log n))"""
     m = ~(np.isnan(x)|np.isnan(y)); xc,yc = x[m],y[m]
     if len(xc) < 10: return {}
     
@@ -49,9 +35,8 @@ def analyze_trend(x, y, label=""):
     s_ols, i_ols, r, p_ols, _ = stats.linregress(xc, yc)
     r2 = r**2
     
-    # Theil-Sen
-    s_ts = theil_sen(xc, yc)
-    ci_lo, ci_hi = bootstrap_ci(xc, yc)
+    # Theil-Sen (scipy built-in, includes 95% CI)
+    s_ts, i_ts, ci_lo, ci_hi = stats.theilslopes(yc, xc)
     
     if label:
         print(f"  {label}: OLS={s_ols:+.4f}/yr R²={r2:.3f} p={p_ols:.4f}  "
@@ -102,11 +87,10 @@ def wavelet_significance(data, scales, dt=1.0, alpha=0.05, n_sim=300):
     # 功率比 (power / sig_level) — >1 表示显著
     power_ratio = power / sig_level[:, np.newaxis]
     
-    # COI (cone of influence) — for each time point, max reliable scale
-    coi_val = scales / np.sqrt(2)  # per scale
-    # At each time t, scales where s*sqrt(2) < min(t, n-t) are reliable
+    # COI (cone of influence) — standard formula: coi(t) = min(t, N-t) / sqrt(2)
+    # Scales above coi_boundary(t) are unreliable due to edge effects
     time_axis = np.arange(n)
-    coi_boundary = np.array([np.min(coi_val[coi_val < min(t, n-1-t)]) if any(coi_val < min(t, n-1-t)) else coi_val[-1] for t in time_axis])
+    coi_boundary = np.minimum(time_axis, n - 1 - time_axis) / np.sqrt(2)
     
     # 全局小波谱
     global_ws = np.mean(power, axis=1)
@@ -240,11 +224,11 @@ for i,c in enumerate(["兰州","西安","西宁"]):
         yrs=annual[annual["城市"]==c]["年"].dropna().values[:len(d)].astype(int)
         if len(d)>=5:
             n=len(d); UF=np.zeros(n)
-            for k in range(1,n):
+            for k in range(2,n):
                 ss=sum(np.sign(d[k]-d[j]) for j in range(k))
                 UF[k]=(ss-np.sign(ss))/np.sqrt(k*(k-1)*(2*k+5)/18)
             dr=d[::-1]; UB_r=np.zeros(n)
-            for k in range(1,n):
+            for k in range(2,n):
                 ss=sum(np.sign(dr[k]-dr[j]) for j in range(k))
                 UB_r[k]=(ss-np.sign(ss))/np.sqrt(k*(k-1)*(2*k+5)/18)
             UB=-UB_r[::-1]
@@ -337,7 +321,7 @@ for i,(col,title) in enumerate(titles):
         ax.plot(cd["年"],cd[col],"o-",color=COL[c],lw=1,ms=2,label=c,alpha=.8)
         x=cd["年"].values.astype(float);y=cd[col].values
         # Theil-Sen trend
-        ts = theil_sen(x, y)
+        ts = stats.theilslopes(y, x)[0]
         ax.plot(x, ts*x + np.mean(y) - ts*np.mean(x), "--", color=COL[c], lw=1, alpha=.4)
     ax.set_title(title,fontsize=9,fontweight="bold"); ax.legend(fontsize=6)
 axes[1,2].axis("off")
