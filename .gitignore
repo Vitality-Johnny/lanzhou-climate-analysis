@@ -28,10 +28,10 @@ Thumbs.db
 *.log
 .ipynb_checkpoints/
 
-# Generated output (排除脚本生成文件，保留 data/ 原始数据)
-fig*.png
-ext_fig*.png
-*.pdf
+# Generated output (排除根目录生成文件，figures/ 目录内图表正常追踪）
+/fig*.png
+/ext_fig*.png
+/*.pdf
 # 根目录生成的数据文件（data/ 下原始数据不排除）
 /tidy_climate_data.csv
 /annual_summary.csv
