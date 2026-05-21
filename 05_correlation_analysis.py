@@ -111,7 +111,7 @@ for ax, mat, p_mat, title in [
 
 fig.suptitle("图6: 三城气候变量相关性矩阵 (1960–2025)", fontweight="bold", fontsize=14)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
-fig.savefig("fig6_相关性矩阵.png", dpi=150)
+fig.savefig("figures/fig6_相关性矩阵.png", dpi=150)
 plt.close(fig)
 
 # ───── 输出关键发现 ─────
