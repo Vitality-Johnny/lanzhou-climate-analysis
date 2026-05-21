@@ -71,7 +71,7 @@ try:
                  fontweight="bold", fontsize=13, pad=15)
 
     fig.tight_layout()
-    fig.savefig("fig7_三城地图.png", dpi=200, bbox_inches="tight")
+    fig.savefig("figures/fig7_三城地图.png", dpi=200, bbox_inches="tight")
     plt.close(fig)
     print("✅ fig7_三城地图.png (cartopy) 已保存")
 
@@ -114,7 +114,7 @@ except ImportError:
                 ),
             ).add_to(m)
 
-        m.save("fig7_三城地图.html")
+        m.save("figures/fig7_三城地图.html")
         print("✅ fig7_三城地图.html (folium 交互地图) 已保存")
 
     except ImportError:
@@ -153,7 +153,7 @@ except ImportError:
         ax.grid(True, alpha=0.3)
 
         fig.tight_layout()
-        fig.savefig("fig7_三城地图.png", dpi=200)
+        fig.savefig("figures/fig7_三城地图.png", dpi=200)
         plt.close(fig)
         print("✅ fig7_三城地图.png (matplotlib 简化版) 已保存")
         print("   💡 安装 cartopy 可获得精美地图: pip install cartopy")
