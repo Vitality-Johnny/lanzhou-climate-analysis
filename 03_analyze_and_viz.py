@@ -121,7 +121,7 @@ for c in ["兰州","西安","西宁"]:
                     (res["x"][-1],res["y"][-1]),
                     textcoords="offset points",xytext=(5,-15),fontsize=7,color=COL[c])
 ax.set(xlabel="年份",ylabel="年均温 (°C)",title="图1: 年均温变化趋势 (1960–2025, Theil-Sen slope + 95% CI)")
-ax.legend(); fig.tight_layout(); fig.savefig("figures/fig1_年均温趋势.png",dpi=150); plt.close()
+ax.legend(); fig.tight_layout(); fig.savefig("fig1_年均温趋势.png",dpi=150); plt.close()
 print("  ✅ fig1")
 
 # ===== Fig2: 年降水 =====
@@ -139,7 +139,7 @@ for c in ["兰州","西安","西宁"]:
                     (res["x"][-1],res["y"][-1]),textcoords="offset points",
                     xytext=(5,0),fontsize=7,color=COL[c])
 ax.set(xlabel="年份",ylabel="年降水量 (mm)",title="图2: 年降水变化趋势 (1960–2025, Theil-Sen slope + 95% CI)")
-ax.legend(); fig.tight_layout(); fig.savefig("figures/fig2_年降水趋势.png",dpi=150); plt.close()
+ax.legend(); fig.tight_layout(); fig.savefig("fig2_年降水趋势.png",dpi=150); plt.close()
 print("  ✅ fig2")
 
 # ===== Fig3: 季节箱线 (不变) =====
@@ -152,7 +152,7 @@ for i,c in enumerate(["兰州","西安","西宁"]):
     axes[i].set_title(c,color=COL[c],fontweight="bold")
     if i==0: axes[i].set_ylabel("月均温 (°C)")
 fig.suptitle("图3: 季节气温分布 (1960–2025)",fontweight="bold")
-fig.tight_layout(); fig.savefig("figures/fig3_季节气温箱线图.png",dpi=150); plt.close()
+fig.tight_layout(); fig.savefig("fig3_季节气温箱线图.png",dpi=150); plt.close()
 print("  ✅ fig3")
 
 # ===== Fig4: 季节降水 =====
@@ -164,7 +164,7 @@ for i,(c,co) in enumerate(COL.items()):
     for bar,v in zip(b,sp[c]): ax.text(bar.get_x()+bar.get_width()/2,bar.get_height()+1,
                                         f"{v:.0f}",ha="center",fontsize=7)
 ax.set(xticks=x,xticklabels=SEASONS,ylabel="月均降水量 (mm)",title="图4: 季节降水对比 (1960–2025)")
-ax.legend(); fig.tight_layout(); fig.savefig("figures/fig4_季节降水对比.png",dpi=150); plt.close()
+ax.legend(); fig.tight_layout(); fig.savefig("fig4_季节降水对比.png",dpi=150); plt.close()
 print("  ✅ fig4")
 
 # ===== Fig5: 综合 (不变) =====
@@ -211,7 +211,7 @@ for c in ["兰州","西安","西宁"]:
     ax.plot(d["年"],d["年降水"],"o-",color=COL[c],lw=1,ms=2,label=c)
 ax.set(xlabel="年份",ylabel="年降水 (mm)",title="(d) 逐年降水"); ax.legend(fontsize=7)
 fig.suptitle("图5: 综合对比 (1960–2025)",fontweight="bold")
-fig.tight_layout(rect=[0,0,1,.95]); fig.savefig("figures/fig5_综合对比.png",dpi=150); plt.close()
+fig.tight_layout(rect=[0,0,1,.95]); fig.savefig("fig5_综合对比.png",dpi=150); plt.close()
 print("  ✅ fig5")
 
 # ===== ExtA: MK突变 (不变) =====
@@ -239,7 +239,7 @@ for i,c in enumerate(["兰州","西安","西宁"]):
             ax.set_xticks(x[::10]); ax.set_xticklabels(yrs[::10],rotation=45,fontsize=6)
         ax.set_title(f"{c} {label}",color=COL[c],fontweight="bold",fontsize=10); ax.legend(fontsize=6)
 fig.suptitle("拓展图A: MK突变检验",fontweight="bold")
-fig.tight_layout(rect=[0,0,1,.96]); fig.savefig("figures/ext_figA_MK突变检验.png",dpi=150); plt.close()
+fig.tight_layout(rect=[0,0,1,.96]); fig.savefig("ext_figA_MK突变检验.png",dpi=150); plt.close()
 print("  ✅ extA")
 
 # ===== ExtB: 小波+显著性+COI+全局谱 =====
@@ -290,7 +290,7 @@ for ci, c in enumerate(["兰州","西安","西宁"]):
 
 fig.suptitle("拓展图B: Morlet小波功率谱 + 95%显著性 + COI + 全局谱", fontweight="bold", fontsize=13)
 fig.tight_layout(rect=[0, 0, 1, 0.97])
-fig.savefig("figures/ext_figB_小波分析.png", dpi=150); plt.close()
+fig.savefig("ext_figB_小波分析.png", dpi=150); plt.close()
 print("  ✅ extB (with significance + COI)")
 
 # ===== ExtC: 极端指数 =====
@@ -326,7 +326,7 @@ for i,(col,title) in enumerate(titles):
     ax.set_title(title,fontsize=9,fontweight="bold"); ax.legend(fontsize=6)
 axes[1,2].axis("off")
 fig.suptitle("拓展图C: 极端气候指数 (月值分位数定义, 非标准ETCCDI)",fontweight="bold")
-fig.tight_layout(rect=[0,0,1,.96]); fig.savefig("figures/ext_figC_极端气候指数.png",dpi=150); plt.close()
+fig.tight_layout(rect=[0,0,1,.96]); fig.savefig("ext_figC_极端气候指数.png",dpi=150); plt.close()
 print("  ✅ extC")
 
 # ===== 统计汇总 =====
