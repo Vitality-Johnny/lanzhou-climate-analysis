@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ea708d6236ee157b26a87c63fd7a0114 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ea708d6236ee157b26a87c63fd7a0114" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ea708d6236ee157b26a87c63fd7a0114 = L.map(
+                "map_ea708d6236ee157b26a87c63fd7a0114",
+                {
+                    center: [35.65, 104.84666666666668],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e0a698ec4b4741905da76875d94d17a5 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e0a698ec4b4741905da76875d94d17a5.addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+            var circle_marker_558a53852e51c2aeda08121e6efb8cee = L.circleMarker(
+                [36.06, 103.83],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e74c3c", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+        var popup_0b0816ad4e6fbeaff47e292146c795b1 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_cd6da0bbf4cf457e762b092c56398aaf = $(`<div id="html_cd6da0bbf4cf457e762b092c56398aaf" style="width: 100.0%; height: 100.0%;"><b>兰州</b><br>海拔: 1520m</div>`)[0];
+                popup_0b0816ad4e6fbeaff47e292146c795b1.setContent(html_cd6da0bbf4cf457e762b092c56398aaf);
+            
+        
+
+        circle_marker_558a53852e51c2aeda08121e6efb8cee.bindPopup(popup_0b0816ad4e6fbeaff47e292146c795b1)
+        ;
+
+        
+    
+    
+            circle_marker_558a53852e51c2aeda08121e6efb8cee.bindTooltip(
+                `<div>
+                     兰州
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_fb0b84026c589fc6b3d6e0a7483f325c = L.marker(
+                [36.21, 103.83],
+                {
+}
+            ).addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+            var div_icon_2df1e5f31f393bae9d87fa2b8da9e25e = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11pt;font-weight:bold;color:#e74c3c;text-shadow:1px 1px 2px white;white-space:nowrap\"\u003e\u5170\u5dde\u003cbr\u003e\u003cspan style=\"font-size:8pt\"\u003e1520m\u003c/span\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_fb0b84026c589fc6b3d6e0a7483f325c.setIcon(div_icon_2df1e5f31f393bae9d87fa2b8da9e25e);
+            
+    
+            var circle_marker_a78c5f91b0f56d602597a10a9f9ac1a4 = L.circleMarker(
+                [34.27, 108.93],
+                {"bubblingMouseEvents": true, "color": "#3498db", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3498db", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+        var popup_8a2aa45b2312b9e46caccddddd85508e = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_bb9fc8da757e028420733f1272d3a4ef = $(`<div id="html_bb9fc8da757e028420733f1272d3a4ef" style="width: 100.0%; height: 100.0%;"><b>西安</b><br>海拔: 400m</div>`)[0];
+                popup_8a2aa45b2312b9e46caccddddd85508e.setContent(html_bb9fc8da757e028420733f1272d3a4ef);
+            
+        
+
+        circle_marker_a78c5f91b0f56d602597a10a9f9ac1a4.bindPopup(popup_8a2aa45b2312b9e46caccddddd85508e)
+        ;
+
+        
+    
+    
+            circle_marker_a78c5f91b0f56d602597a10a9f9ac1a4.bindTooltip(
+                `<div>
+                     西安
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_8936af9b6ec71b203cbd6b691e71fdea = L.marker(
+                [34.42, 108.93],
+                {
+}
+            ).addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+            var div_icon_b89ef6c9e4cf7a0aaf9e9912062b2e55 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11pt;font-weight:bold;color:#3498db;text-shadow:1px 1px 2px white;white-space:nowrap\"\u003e\u897f\u5b89\u003cbr\u003e\u003cspan style=\"font-size:8pt\"\u003e400m\u003c/span\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_8936af9b6ec71b203cbd6b691e71fdea.setIcon(div_icon_b89ef6c9e4cf7a0aaf9e9912062b2e55);
+            
+    
+            var circle_marker_53bb0504cbebd065678691524d5db0aa = L.circleMarker(
+                [36.62, 101.78],
+                {"bubblingMouseEvents": true, "color": "#2ecc71", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ecc71", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+        var popup_0fc988afb7861b09b99dabf54f510e8c = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_6fe77c1cc172700237c21e0e5f9a1123 = $(`<div id="html_6fe77c1cc172700237c21e0e5f9a1123" style="width: 100.0%; height: 100.0%;"><b>西宁</b><br>海拔: 2261m</div>`)[0];
+                popup_0fc988afb7861b09b99dabf54f510e8c.setContent(html_6fe77c1cc172700237c21e0e5f9a1123);
+            
+        
+
+        circle_marker_53bb0504cbebd065678691524d5db0aa.bindPopup(popup_0fc988afb7861b09b99dabf54f510e8c)
+        ;
+
+        
+    
+    
+            circle_marker_53bb0504cbebd065678691524d5db0aa.bindTooltip(
+                `<div>
+                     西宁
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_43d9c8638643dd86c6bb67cf712d0045 = L.marker(
+                [36.769999999999996, 101.78],
+                {
+}
+            ).addTo(map_ea708d6236ee157b26a87c63fd7a0114);
+        
+    
+            var div_icon_f8507f1e984cd9b152e3019e56583ed3 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11pt;font-weight:bold;color:#2ecc71;text-shadow:1px 1px 2px white;white-space:nowrap\"\u003e\u897f\u5b81\u003cbr\u003e\u003cspan style=\"font-size:8pt\"\u003e2261m\u003c/span\u003e\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+                marker_43d9c8638643dd86c6bb67cf712d0045.setIcon(div_icon_f8507f1e984cd9b152e3019e56583ed3);
+            
+</script>
+</html>
